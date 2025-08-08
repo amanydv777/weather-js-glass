@@ -1,4 +1,14 @@
-const apiKey = "6dac63954a9f5caf74e0326f7a6e7cfa"; // OpenWeatherMap API key
+const apiKey = "6dac63954a9f5caf74e0326f7a6e7cfa"; // OpenWeatherMap API key 
+
+// Loader functions
+function showLoader() {
+  document.getElementById("loader").style.display = "flex";
+}
+function hideLoader() {
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+  }, 50); // slight delay for smoothness
+}
 
 document.getElementById("cityInput").addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
@@ -18,6 +28,8 @@ document.getElementById("getWeatherBtn").addEventListener("click", function () {
 
 async function getWeather(city) {
   try {
+    showLoader(); // Loader start
+
     const weatherRes = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
     );
@@ -50,11 +62,13 @@ async function getWeather(city) {
     document.getElementById("cityInput").value = "";
 
     // ✅ Get 5-day forecast
-    getForecast(city);
+    await getForecast(city);
 
   } catch (error) {
     alert("City not found or an error occurred.");
     console.error(error);
+  } finally {
+    hideLoader(); // Loader end
   }
 }
 
@@ -63,10 +77,6 @@ function updateBackground(condition) {
   document.body.className = ""; // Reset all classes
   const animBg = document.getElementById("animatedBackground");
   animBg.innerHTML = ""; // Clear old raindrops if any
-
-
-
-
 
   // Default background
   let bgClass = "default-bg";
@@ -95,18 +105,8 @@ function updateBackground(condition) {
   document.body.classList.add(bgClass);
 }
 
-
-
-
-
-
-
-
-
 // Clock
-
 let clockInterval;
-
 function startCityClock(offsetInSeconds) {
   clearInterval(clockInterval);
 
@@ -123,20 +123,11 @@ function startCityClock(offsetInSeconds) {
   }, 1000);
 }
 
-
-
-
-
-
-
-
-
-
-
-
 // ✅ 5-Day Forecast Function
 async function getForecast(city) {
   try {
+    showLoader(); // Loader start
+
     const res = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
     );
@@ -187,16 +178,10 @@ async function getForecast(city) {
 
   } catch (error) {
     console.error("Forecast error:", error);
+  } finally {
+    hideLoader(); // Loader end
   }
 }
-
-
-
-
-
-
-
-
 
 // Show default weather on first load
 window.addEventListener("load", () => {

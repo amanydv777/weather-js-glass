@@ -199,15 +199,16 @@ height: 100vh;
     border-radius: 8px;
     background: rgba(0, 0, 0, 0.1);
     font-family: 'Poppins', sans-serif;
+    font-weight: 700;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .map-search button:active {
-    background: rgba(0, 0, 0, 0.1);
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
-              inset -2px -2px 4px rgba(255, 255, 255, 0.3);
-  transform: translateY(0px);
+    background: rgba(255, 255, 255, 0.25);
+box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.3) ,
+            inset -2px -2px 4px #2c2a2a ;
+transform: translateY(0px);
 }
 
 .map-search button:hover {
