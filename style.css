@@ -1,0 +1,427 @@
+:root {
+  --font-size-base: 16px;
+  --card-width: min(90vw, 360px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: url("assets/default.jpg") no-repeat center center/cover;
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5vw;
+  transition: background 0.5s ease-in-out;
+  font-family: sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background Images */
+body.sunny {
+  background: url("assets/sunny.jpg") no-repeat center center/cover;
+}
+body.clouds {
+  background: url("assets/cloudy.jpg") no-repeat center center/cover;
+}
+body.rain {
+  background: url("assets/rain.jpg") no-repeat center center/cover;
+}
+body.snow {
+  background: url("assets/snow.jpg") no-repeat center center/cover;
+}
+body.thunderstorm {
+  background: url("assets/thunderstorm.jpg") no-repeat center center/cover;
+}
+body.default-bg {
+  background: linear-gradient(to right, #1c92d2, #f2fcfe);
+}
+
+/* Raindrop Container */
+#animatedBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Angled Raindrops */
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  animation: slantDrop linear infinite;
+}
+
+@keyframes slantDrop {
+  0% {
+    transform: translate(0, 0) rotate(20deg);
+  }
+  100% {
+    transform: translate(40px, 100vh) rotate(20deg);
+  }
+}
+
+/* Responsive font size */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+.container {
+  margin-top: 2rem;
+  width: var(--card-width);
+  display: flex;
+  flex-direction: column;
+  gap: 5vw;
+}
+
+.glass-card, .glass-card2 {
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  color: #111;
+box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 
+            0 0 25px rgba(0, 150, 255, 0.1);
+  border: 1px solid #ccc;
+}
+
+h2, h3, h4 {
+  text-align: center;
+  padding: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: italic;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+              0 -2px 8px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+@media (min-width: 600px) {
+  .top {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #cityInput {
+    flex: 1 1 auto;
+  }
+}
+
+#getWeatherBtn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: #111;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 12px 15px;
+  white-space: nowrap;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+              0 -2px 8px rgba(255, 255, 255, 0.2);
+}
+
+#getWeatherBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid #ffffff;
+  transform: translateY(-1px);
+}
+
+#getWeatherBtn:active {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+              inset -2px -2px 4px rgba(255, 255, 255, 0.3);
+  transform: translateY(0px);
+}
+
+.weather-info {
+  text-align: center;
+}
+
+.weather-info img {
+  width: 20vw;
+  max-width: 80px;
+  margin-bottom: 1rem;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 0;
+}
+
+.bottom-nav button {
+  font-size: 1rem;
+}
+
+.glass-card2 {
+  overflow-x: auto;
+  min-width: 100%;
+}
+
+#forecastList {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+}
+
+
+.forecast-day {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  min-width: 120px;
+}
+
+.forecast-day:hover {
+transform: translateY(1px);
+border: 1px solid #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 
+            0 0 25px rgba(0, 150, 255, 0.1);
+}
+
+.day-date {
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  gap: 6px;
+}
+
+.temp-weather {
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  gap: 6px;
+}
+
+.forecast-day {
+  min-width: 140px;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.forecast-day img {
+  width: 50px;
+  height: 50px;
+}
+
+.forecast-meta, .forecast-date {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  gap: 6px;
+}
+
+.clock-text {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #444;
+}
+
+.background-blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.1);
+  z-index: 0;
+  pointer-events: none;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .background-blur-overlay {
+    display: block;
+  }
+}
+
+/* Common Styles */
+.responsive-navbar {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 
+            0 0 25px rgba(0, 150, 255, 0.1);
+  z-index: 5;
+  display: flex;
+  gap: 2rem;
+  font-family: 'Poppins', sans-serif;
+  justify-content: center;
+  border: 1px solid #cccccc; 
+  align-items: center;
+}
+
+.responsive-navbar:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+transform: translateY(1px);
+border: 2px solid #cccccc; 
+}
+
+/* Buttons */
+.responsive-navbar .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  transition: transform 0.2s ease;
+}
+
+.responsive-navbar .nav-item:hover {
+  transform: scale(1.05);
+}
+
+.responsive-navbar .nav-icon {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+}
+
+/* Desktop View (top-right) */
+@media (min-width: 769px) {
+  .responsive-navbar {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+/* Mobile View (bottom inline) */
+@media (max-width: 768px) {
+  .responsive-navbar {
+    position: static; /* Make it flow below content */
+    margin: 2rem auto 1rem auto;
+    width: fit-content;
+    padding: 0.6rem 2rem;
+  }
+}
+/* Responsive Glass Navbar (Non-Sticky) */
+.responsive-navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  padding: 0.6rem 1rem;
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 500px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Common Nav Item Styles */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-size: 0.85rem;
+  transition: all 0.3s ease-in-out;
+  padding: 0.4rem 1rem;
+  border-radius: 1rem;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+.nav-icon {
+  font-size: 1.3rem;
+  margin-bottom: 3px;
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 8px rgba(94, 87, 87, 0.103);
+  transform: scale(1.1);
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .responsive-navbar {
+    flex-direction: row;
+  }
+}
+
+/* Desktop View */
+@media (min-width: 769px) {
+  .responsive-navbar {
+    justify-content: flex-end;
+    margin-top: 0rem;
+    margin-right: 0rem;
+    max-width: 17%;
+  }
+
+  .nav-item {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .nav-label {
+    display: inline;
+    font-weight: 500;
+  }
+}
+

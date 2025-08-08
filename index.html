@@ -1,0 +1,64 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather ☔️</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+<body>
+<div id="animatedBackground"></div>
+<div class="background-blur-overlay"></div>
+<div class="container">
+  <div class="glass-card">
+    <h2>Weather</h2>
+    <div class="top">
+      <input type="text" id="cityInput" placeholder="Search for a city" />
+      <button id="getWeatherBtn">Get Weather</button>
+    </div>
+    <div class="weather-info">
+      <img src="assets/sunny.svg" id="weatherIcon" alt="" />
+      <h3 id="location">City, State</h3>
+      <p id="temperature">°C / Sunny</p>
+      <p id="timeDisplay" class="clock-text"></p>
+    </div>
+  </div>
+
+  <div class="glass-card2">
+    <div class="forecast">
+      <h4>Forecast</h4>
+      <div id="forecastList">
+        <div class="forecast-day">
+          <div class="forecast-date">
+            <span>Tue</span>
+            <span>Aug 5</span>
+          </div>
+          <img src="your-icon.png" alt="Rain" />
+          <div class="forecast-meta">
+            <span>26°C</span>
+            <span>Rain</span>
+          </div>
+        </div>
+        <!-- Add more forecast-day divs similarly -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Responsive Navigation Bar -->
+<nav class="responsive-navbar">
+  <a href="#" class="nav-item active">
+    <i class="fa-solid fa-house nav-icon"></i>
+    <span class="nav-label">Home</span>
+  </a>
+  <a href="map.html" class="nav-item">
+    <i class="fa-solid fa-map nav-icon"></i>
+    <span class="nav-label">Map</span>
+  </a>
+</nav>
+
+<script src="script.js"></script>
+</body>
+</html>
