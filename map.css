@@ -203,6 +203,22 @@ height: 100vh;
     transition: 0.3s;
 }
 
+.map-search button:active {
+    background: rgba(0, 0, 0, 0.1);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+              inset -2px -2px 4px rgba(255, 255, 255, 0.3);
+  transform: translateY(0px);
+}
+
 .map-search button:hover {
     background: rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+.map-search {
+    margin-top: 6.5rem;
+align-items: end;
+}
+#map {
+margin-top: 5rem;}
 }
