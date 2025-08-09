@@ -1,4 +1,4 @@
-// ✅ Replace with your OpenWeatherMap API Key
+// ✅ Replace with your OpenWeatherMap API Key 
 const API_KEY = "6dac63954a9f5caf74e0326f7a6e7cfa";
 
 // Initialize map
@@ -9,9 +9,11 @@ const map = L.map('map', {
     }
 }).setView([20.5937, 78.9629], 4);
 
-// Base map layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+// ✅ Base map layer (Carto Free Style)
+L.tileLayer('https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
 }).addTo(map);
 
 // Weather Layers
@@ -60,14 +62,14 @@ document.getElementById("mapSearchBtn").addEventListener("click", () => {
     if (!city) return;
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
-      .then(res => res.json())
-      .then(data => {
-          if (data.coord) {
-              map.setView([data.coord.lat, data.coord.lon], 8);
-              addCityMarker(data.coord.lat, data.coord.lon, city);
-          } else {
-              alert("City not found");
-          }
-      })
-      .catch(err => console.error(err));
+        .then(res => res.json())
+        .then(data => {
+            if (data.coord) {
+                map.setView([data.coord.lat, data.coord.lon], 8);
+                addCityMarker(data.coord.lat, data.coord.lon, city);
+            } else {
+                alert("City not found");
+            }
+        })
+        .catch(err => console.error(err));
 });
