@@ -1,4 +1,4 @@
-// ✅ Replace with your OpenWeatherMap API Key 
+// OpenWeatherMap API Key 
 const API_KEY = "6dac63954a9f5caf74e0326f7a6e7cfa";
 
 // Initialize map
@@ -9,7 +9,7 @@ const map = L.map('map', {
     }
 }).setView([20.5937, 78.9629], 4);
 
-// ✅ Base map layer (Carto Free Style)
+// Base map layer by Carto
 L.tileLayer('https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
     subdomains: 'abcd',
@@ -53,7 +53,7 @@ function addCityMarker(lat, lon, cityName) {
     .openPopup();
 }
 
-// Example Marker for Delhi
+// Marker for City
 addCityMarker(28.6139, 77.2090, "Delhi");
 
 // Search Button Functionality

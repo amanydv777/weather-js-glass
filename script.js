@@ -1,4 +1,5 @@
-const apiKey = "6dac63954a9f5caf74e0326f7a6e7cfa"; // OpenWeatherMap API key 
+// OpenWeatherMap API key 
+const apiKey = "6dac63954a9f5caf74e0326f7a6e7cfa"; 
 
 // Loader functions
 function showLoader() {
@@ -58,10 +59,10 @@ async function getWeather(city) {
     // Update background based on condition
     updateBackground(weatherData.weather[0].main);
 
-    // ✅ Clear input field after search
+    // Clears input field after search
     document.getElementById("cityInput").value = "";
 
-    // ✅ Get 5-day forecast
+    // 5-day forecast
     await getForecast(city);
 
   } catch (error) {
@@ -123,7 +124,7 @@ function startCityClock(offsetInSeconds) {
   }, 1000);
 }
 
-// ✅ 5-Day Forecast Function
+// 5-Day Forecast Function
 async function getForecast(city) {
   try {
     showLoader(); // Loader start
@@ -167,7 +168,7 @@ async function getForecast(city) {
         <div class="day-date">
           <span>${dayName}</span> <span>${dateStr}</span>
         </div>
-        <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="">
+        <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="">
         <div class="temp-weather">
           <span>${Math.round(day.main.temp)}°C</span> <span>${day.weather[0].main}</span>
         </div>
